@@ -20,3 +20,22 @@ jobs:
       #     value1: "Space Invaders"
       #     account: 213174456968
       #     region: eu-west-1
+
+  Test-OIDC:
+    runs-on: ubuntu-latest
+    env:
+      REGION: eu-west-3
+      ACCOUNT: 444838350740
+    steps:
+      - name: Configure AWS Creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{env.ACCOUNT}}:role/github_pipeline_s3
+          aws-region: ${{env.REGION}}
+      
+      - name: Copy file from Bucket
+        run: aws s3 cp s3://github-exp-read-bucket/filler.txt . 
+      
+      - name: Read local file
+        run: cat filler.txt
+  
