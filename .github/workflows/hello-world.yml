@@ -27,6 +27,9 @@ jobs:
       REGION: eu-west-3
       ACCOUNT: 444838350740
     steps:
+      - name: Sanity check
+        run: echo "The following step should not work!"
+        
       - name: Configure AWS Creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
