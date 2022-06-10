@@ -30,7 +30,7 @@ jobs:
       - name: Configure AWS Creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::${{env.ACCOUNT}}:role/github_pipeline_s3
+          role-to-assume: arn:aws:iam::${{env.ACCOUNT}}:role/test_role
           aws-region: ${{env.REGION}}
       
       - name: Copy file from Bucket
