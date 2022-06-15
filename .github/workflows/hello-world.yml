@@ -28,7 +28,7 @@ jobs:
       ACCOUNT: 444838350740
     steps:
       - name: Get the file with reusable action
-        uses: sandrolex/s3-action@main
+        uses: sandrolex/s3-action
         with:
           account: ${{env.ACCOUNT}}
           aws-region: ${{env.REGION}}
