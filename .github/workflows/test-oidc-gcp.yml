@@ -7,8 +7,6 @@ permissions:
       contents: 'read'
       id-token: 'write'
 
-
-
 jobs:
   test-oidc-gcp:
     runs-on: ubuntu-latest    
