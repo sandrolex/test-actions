@@ -4,7 +4,7 @@ permissions:
       id-token: write
       contents: read 
 jobs:
-  Build-Container Image:
+  Build-Container-Image:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
