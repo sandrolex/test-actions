@@ -12,4 +12,4 @@ jobs:
       
       - name: Build Container
         run: |- 
-        docker build -t http-server . 
+          docker build -t http-server . 
