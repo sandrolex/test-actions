@@ -1,4 +1,4 @@
-name: Hello World Action
+name: Build Image Using Re-usable workflow
 on: [push]
 permissions:
       id-token: write
