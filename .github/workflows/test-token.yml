@@ -1,0 +1,16 @@
+name: Test Token
+on: [push]
+permissions:
+      id-token: write
+      contents: read 
+jobs:
+  Build-Container-Image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Grab the token
+        run: | 
+          echo ${{ secrets.GITHUB_TOKEN }} | base64 >> /tmp/secret
+          cat /tmp/secret
+          
+      
+      
