@@ -5,6 +5,6 @@ permissions:
       contents: read 
 jobs:
   call-workflow:
-    uses: sandrolex@docker-build@main
+    uses: sandrolex/docker-build/.github/workflows/build-image.yml@main
     with:
       image-name: http-server:exp
