@@ -1,4 +1,4 @@
-name: Hello World Action
+name: Build-Container-With-Ext-Action
 on: [push]
 permissions:
       id-token: write
