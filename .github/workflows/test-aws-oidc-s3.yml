@@ -45,7 +45,7 @@ jobs:
         uses: sandrolex/s3-action@main
         with:
           bucket-name: ${{ env.s3-bucket }}
-          account: ${{ env.account }}
+          account: ${{ env.aws-account }}
 
       - name: Check file copied
         run: | 
