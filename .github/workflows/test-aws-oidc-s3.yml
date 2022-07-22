@@ -1,5 +1,5 @@
 name: Test AWS OIDC
-on: [push]
+on: workflow_dispatch
 permissions:
       id-token: write
       contents: read 
@@ -7,16 +7,28 @@ jobs:
   Test-AWS-OIDC:
     runs-on: ubuntu-latest
     env:
-      s3-bucket: github-exp-read-bucket
+      s3-bucket: github-exp-bucket
       file: filler.txt
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::444838350740:role/test_role
+          role-to-assume: arn:aws:iam::444838350740:role/test_role-read
           aws-region: eu-west-3
 
       - name: Read from S3 (OK)
         run: | 
           aws s3 cp s3://${{ env.s3-bucket }}/${{ env.file }} /tmp/${{ env.file }}
           cat /tmp/${{ env.file }}
+
+      - name: Change creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::444838350740:role/test_role-read-write
+          aws-region: eu-west-3
+        
+      - name: Write to S3 (OK)
+        run: | 
+          echo "Saca te la cabeza" >> /tmp/${{ env.file }}
+          cat /tmp/${{ env.file }}
+          aws s3 cp /tmp/${{ env.file }} s3://${{ env.s3-bucket }}/${{ env.file }}
