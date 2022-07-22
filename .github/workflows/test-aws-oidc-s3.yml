@@ -41,6 +41,12 @@ jobs:
       file: filler.txt
       aws-account: 444838350740
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{ env.aws-account }}:role/test_role-read
+          aws-region: eu-west-3
+      
       - name: Copy file from bucket using external action
         uses: sandrolex/s3-action@main
         with:
