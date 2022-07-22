@@ -11,6 +11,10 @@ jobs:
       file: filler.txt
       aws-account: 444838350740
     steps:
+      - name: Fille
+        run: |
+          echo "Running from a PR"
+        
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
