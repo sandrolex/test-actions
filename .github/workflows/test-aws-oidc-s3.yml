@@ -1,5 +1,5 @@
 name: Test AWS OIDC
-on: workflow_dispatch
+on: push
 permissions:
       id-token: write
       contents: read 
