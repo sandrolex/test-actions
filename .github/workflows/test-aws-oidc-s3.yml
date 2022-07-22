@@ -18,6 +18,5 @@ jobs:
 
       - name: Read from S3 (OK)
         run: | 
-          aws s3 ls
           aws s3 cp s3://${{ env.s3-bucket }}/${{ env.file }} /tmp/${{ env.file }}
           cat /tmp/${{ env.file }}
