@@ -34,20 +34,20 @@ jobs:
           cat /tmp/${{ env.file }}
           aws s3 cp /tmp/${{ env.file }} s3://${{ env.s3-bucket }}/${{ env.file }}
       
-    Test-Using-Ext-Action:
-      runs-on: ubuntu-latest
-      env:
-        s3-bucket: github-exp-bucket
-        file: filler.txt
-        aws-account: 444838350740
-      steps:
-        - name: Copy file from bucket using external action
-          uses: sandrolex/s3-action@main
-          with:
-            bucket-name: ${{ env.s3-bucket }}
-            account: ${{ env.account }}
+  Test-Using-Ext-Action:
+    runs-on: ubuntu-latest
+    env:
+      s3-bucket: github-exp-bucket
+      file: filler.txt
+      aws-account: 444838350740
+    steps:
+      - name: Copy file from bucket using external action
+        uses: sandrolex/s3-action@main
+        with:
+          bucket-name: ${{ env.s3-bucket }}
+          account: ${{ env.account }}
 
-        - name: Check file copied
-          run: | 
-            cat ${{ env.file }}
-  
+      - name: Check file copied
+        run: | 
+          cat ${{ env.file }}
+
