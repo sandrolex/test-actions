@@ -58,7 +58,7 @@ jobs:
           cat ${{ env.file }}
 
   Test-Using-Ext-Workflow:
-    uses: sandrolex@workflows/.github/workflows/read-from-s3.yml@main
+    uses: sandrolex/workflows/.github/workflows/read-from-s3.yml@main
     with:
       aws-account: 444838350740
       region: eu-west-3
