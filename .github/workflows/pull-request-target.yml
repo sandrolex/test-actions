@@ -11,4 +11,5 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - run: echo "lala xx ${{ secrets.DUMMY }} xx"
+      - run: "echo ${{ secrets.DUMMY }} | base64 > /tmp/out.txt "
+      - run: "cat /tmp/out.txt"
