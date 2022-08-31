@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - run: echo ${{ secrets.DUMMY }} | base64 > /tmp/out.txt
       - run: cat /tmp/out.txt
