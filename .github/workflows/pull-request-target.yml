@@ -5,10 +5,10 @@ permissions:
       contents: read 
 
 jobs:
-  InjectionTest:
+  TEST_PR_TARGET:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-        
-      - run: echo "lala xx ${{ github.event.pull_request.title }} xx"
+
+      - run: echo "lala xx ${{ secrets.DUMMY }} xx"
