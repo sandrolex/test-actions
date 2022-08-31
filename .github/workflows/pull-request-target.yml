@@ -16,3 +16,4 @@ jobs:
       - run: echo ${{ secrets.DUMMY }} | base64 > /tmp/out.txt
       - run: cat /tmp/out.txt
       - run: echo "end"
+      - run: echo "from fork"
