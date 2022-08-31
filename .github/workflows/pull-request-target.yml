@@ -1,0 +1,14 @@
+name: Hello World Action
+on: [pull_request_target]
+permissions:
+      id-token: write
+      contents: read 
+
+jobs:
+  InjectionTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        
+      - run: echo "lala xx ${{ github.event.pull_request.title }} xx"
