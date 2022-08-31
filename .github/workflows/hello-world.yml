@@ -15,11 +15,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      # - uses: ./.github/workflows/composite/test-creds
-      #   with:
-      #     value1: "Space Invaders"
-      #     account: 213174456968
-      #     region: eu-west-1
+
 
 
   
