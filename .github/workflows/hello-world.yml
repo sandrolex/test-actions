@@ -18,7 +18,7 @@ jobs:
       
       - name: docker build
         run: | 
-          docker build -t crab:2 . 
+          docker build -t crab:3 . 
       
       - name: Login to ACR
         run: | 
@@ -26,8 +26,8 @@ jobs:
       
       - name: Push image
         run: | 
-          docker tag crab:2 mothership.azurecr.io/mothership/crab:2
-          docker push mothership.azurecr.io/mothership/crab:2
+          docker tag crab:2 mothership.azurecr.io/crab:3
+          docker push mothership.azurecr.io/crab:3
       
 
 
