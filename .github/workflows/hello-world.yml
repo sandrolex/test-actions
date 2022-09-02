@@ -26,7 +26,7 @@ jobs:
       
       - name: Push image
         run: | 
-          docker tag crab:2 mothership.azurecr.io/crab:3
+          docker tag crab:3 mothership.azurecr.io/crab:3
           docker push mothership.azurecr.io/crab:3
       
 
