@@ -22,12 +22,12 @@ jobs:
       
       - name: Login to ACR
         run: | 
-          az acr login --name mothership
+          az acr login --name SpaceStation
       
       - name: Push image
         run: | 
-          docker tag crab:3 mothership.azurecr.io/crab:3
-          docker push mothership.azurecr.io/crab:3
+          docker tag crab:3 spacestation.azurecr.io/crab:3
+          docker push spacestation.azurecr.io/crab:3
       
 
 
