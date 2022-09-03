@@ -1,8 +1,8 @@
 name: Auto Approve
 on: [pull_request]
-permissions:
-      id-token: write
-      contents: read 
+permissions: write-all
+      # id-token: write
+      # contents: read 
 
 jobs:
   AutoApproveTest:
