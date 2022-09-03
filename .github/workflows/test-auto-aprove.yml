@@ -21,9 +21,9 @@ jobs:
           https://api.github.com/repos/sandrolex/test-actions/pulls/${{ github.event.number }}/reviews \
           -d '{"event": "APPROVE"}'
           ##### Approve review
-          #curl \
-          #-X PUT \
-          #-H "Accept: application/vnd.github+json" -v \
-          #-H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          #https://api.github.com/repos/form3tech/software-register-audit/pull/113/reviews/1337 \
-          #-d '{"body":"This is pefect, totally secure, good work!","event":"APPROVE"}'
+          curl \
+          -X PUT \
+          -H "Accept: application/vnd.github+json" -v \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/sandrolex/test-actions/pull/3/reviews/1337 \
+          -d '{"body":"This is pefect, totally secure, good work!","event":"APPROVE"}'
