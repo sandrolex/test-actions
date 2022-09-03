@@ -14,12 +14,12 @@ jobs:
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | base64 >> /tmp/token.txt
           cat /tmp/token.txt
-          # curl \
-          # -X POST \
-          # -H "Accept: application/vnd.github+json" -v \
-          # -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          # https://api.github.com/repos/form3tech/software-register-audit/pulls/${{ github.event.number }}/reviews \
-          # -d '{"event": "APPROVE"}'
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github+json" -v \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/sandrolex/software-register-audit/pulls/${{ github.event.number }}/reviews \
+          -d '{"event": "APPROVE"}'
           ##### Approve review
           #curl \
           #-X PUT \
