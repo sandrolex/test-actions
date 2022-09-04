@@ -14,7 +14,7 @@ jobs:
         with:
           subscription-id: 08001296-a099-444e-aa53-cfc88a17e09e
           tenant-id: 06945451-e624-43f3-afc4-f27b886472c1
-          client-id: c97b0e37-5fde-46ec-95e3-3bf9d0d99a81
+          client-id: d478310c-f4e8-476a-bdf0-17f42226ebb6
       
       - name: docker build
         run: | 
