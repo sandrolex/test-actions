@@ -1,5 +1,5 @@
 name: Test Azure
-on: [push]
+on: [pull_request]
 permissions:
       id-token: write
       contents: read 
@@ -14,7 +14,7 @@ jobs:
         with:
           subscription-id: 08001296-a099-444e-aa53-cfc88a17e09e
           tenant-id: 06945451-e624-43f3-afc4-f27b886472c1
-          client-id: fb1144cc-9f1e-4b2b-ac7c-643d708a6b35
+          client-id: c97b0e37-5fde-46ec-95e3-3bf9d0d99a81
       
       - name: docker build
         run: | 
