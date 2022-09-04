@@ -1,25 +1,35 @@
-name: Hello World Action
-on: [push]
+name: Test Azure
+on: [pull_request]
 permissions:
       id-token: write
       contents: read 
 jobs:
-  Explore-GitHub-Actions:
+  UseOIDC:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      # - uses: ./.github/workflows/composite/test-creds
-      #   with:
-      #     value1: "Space Invaders"
-      #     account: 213174456968
-      #     region: eu-west-1
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          subscription-id: 08001296-a099-444e-aa53-cfc88a17e09e
+          tenant-id: 06945451-e624-43f3-afc4-f27b886472c1
+          client-id: d478310c-f4e8-476a-bdf0-17f42226ebb6
+      
+      - name: docker build
+        run: | 
+          docker build -t crab:3 . 
+      
+      - name: Login to ACR
+        run: | 
+          az acr login --name SpaceStation
+      
+      - name: Push image
+        run: | 
+          docker tag crab:3 spacestation.azurecr.io/crab:3
+          docker push spacestation.azurecr.io/crab:3
+      
+
 
 
   
