@@ -1,3 +1,3 @@
-FROM nginx:latest
+FROM ubuntu:20.04
 
-RUN echo "Take me to your leader" > /usr/share/nginx/html/index.html
+RUN echo "Take me to your leader" > /root/message.txt
