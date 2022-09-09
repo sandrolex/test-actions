@@ -16,7 +16,7 @@ jobs:
         run: | 
           curl \
           -X POST \
-          -H "Accept: application/vnd.github+json" -v \
+          -H "Accept: application/vnd.github+json"  \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           https://api.github.com/repos/coriky/test-actions/pulls/${{ github.event.number }}/reviews \
           -d '{"event": "APPROVE"}'
