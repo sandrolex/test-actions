@@ -19,7 +19,7 @@ jobs:
             -H "Accept: application/vnd.github+json"  \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \ 
             https://api.github.com/repos/coriky/test-actions/pulls \
-            -d '{"title":"New PR", "body":"New PR Body", "head": "test-actions:test-semgrep", "base":"master"}'
+            -d "{\"title\":\"New PR\", \"body\":\"New PR Body\", \"head\": \"test-actions:test-semgrep\", \"base\":\"master\"}"
           
       - name: approve review
         run: | 
