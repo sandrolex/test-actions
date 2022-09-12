@@ -12,11 +12,19 @@ jobs:
       - name: filler
         run: echo "this is test auto approve"
 
-      - name: create and approve review
+      - name: approve review
         run: | 
           curl \
           -X POST \
           -H "Accept: application/vnd.github+json"  \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           https://api.github.com/repos/coriky/test-actions/pulls/${{ github.event.number }}/reviews \
           -d '{"event": "APPROVE"}'
+      
+      - name: merge PR
+        run: |
+          curl \
+            -X PUT \
+            -H "Accept: application/vnd.github+json"  \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/coriky/test-actions/pulls/${{ github.event.number }}/merge 
