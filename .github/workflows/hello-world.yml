@@ -15,20 +15,11 @@ jobs:
           subscription-id: 08001296-a099-444e-aa53-cfc88a17e09e
           tenant-id: 06945451-e624-43f3-afc4-f27b886472c1
           client-id: d29971f6-8713-4e3d-b503-0f5d5ba485cc
-      
-      - name: docker build
-        run: | 
-          docker build -t crab:2 . 
-      
+
       - name: Login to ACR
         run: | 
           az acr login --name mothership
-      
-      - name: Push image
-        run: | 
-          docker tag crab:2 mothership.azurecr.io/mothership/crab:2
-          docker push mothership.azurecr.io/mothership/crab:2
-      
+            
 
 
 
