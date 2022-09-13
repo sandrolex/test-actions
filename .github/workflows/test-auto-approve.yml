@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      new-test
+      test-semgrep
   pull_request:
 
 permissions: write-all
