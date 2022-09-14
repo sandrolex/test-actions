@@ -4,22 +4,11 @@ permissions:
       id-token: write
       contents: read 
 jobs:
-  Explore-GitHub-Actions:
+  GCP-issue:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      # - uses: ./.github/workflows/composite/test-creds
-      #   with:
-      #     value1: "Space Invaders"
-      #     account: 213174456968
-      #     region: eu-west-1
-
+      - run: echo "Hello GCP"
 
   
