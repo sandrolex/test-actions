@@ -25,9 +25,12 @@ jobs:
           retries: 0
           id_token_include_email: false
         
-      - name: "Interact with gcr read"
-        uses: docker/login-action@v2
-        with:
-          registry: gcr.io
-          username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.token }}
+      # - name: "Interact with gcr read"
+      #   uses: docker/login-action@v2
+      #   with:
+      #     registry: gcr.io
+      #     username: oauth2accesstoken
+      #     password: ${{ steps.auth.outputs.token }}
+      - name: "docker login"
+        run: | 
+          gcloud auth configure-docker
