@@ -24,3 +24,10 @@ jobs:
           access_token_scopes: https://www.googleapis.com/auth/cloud-platform
           retries: 0
           id_token_include_email: false
+        
+      - name: "Interact with gcr read"
+        uses: docker/login-action@v2
+        with:
+          registry: gcr.io
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.token }}
