@@ -1,4 +1,4 @@
-name: Hello World Action
+name: GCP
 on: [push]
 permissions:
       id-token: write
@@ -15,9 +15,8 @@ jobs:
         id: auth
         uses: "google-github-actions/auth@v0"
         with:
-          token_format: "access_token"
-          workload_identity_provider: projects/554261169793/locations/global/workloadIdentityPools/gha-devworkshop/providers/gha-devworkshop
-          service_account: ga08a2952ffea364dc369909f1286e@container-registry-09395a73.iam.gserviceaccount.com
+          workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/my-pool/providers/my-provider
+          service_account: my-service-account@oidc-experiment-354309.iam.gserviceaccount.com
           create_credentials_file: true
           export_environment_variables: true
           cleanup_credentials: true
