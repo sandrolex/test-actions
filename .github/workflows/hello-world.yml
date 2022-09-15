@@ -30,6 +30,11 @@ jobs:
         run: |
           docker run gcr.io/oidc-experiment-354309/busybox cat /etc/passwd
 
+      - name: "Push new image"
+        run: |
+          docker build -t crab . 
+          docker tag crab gcr.io/oidc-experiment-354309/crab:1
+          docker push gcr.io/oidc-experiment-354309/crab:1
       # - name: "docker login"
       #   run: | 
       #     gcloud auth configure-docker
