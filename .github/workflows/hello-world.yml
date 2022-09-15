@@ -18,20 +18,14 @@ jobs:
           token_format: 'access_token'
           workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/my-pool/providers/my-provider
           service_account: my-service-account@oidc-experiment-354309.iam.gserviceaccount.com
-          create_credentials_file: true
-          export_environment_variables: true
-          cleanup_credentials: true
-          access_token_lifetime: 3600s
-          access_token_scopes: https://www.googleapis.com/auth/cloud-platform
-          retries: 0
-          id_token_include_email: false
         
       - name: "Interact with gcr read"
         uses: docker/login-action@v2
         with:
           registry: gcr.io
           username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.token }}
+          password: ${{ steps.auth.outputs.access_token }}
+
       # - name: "docker login"
       #   run: | 
       #     gcloud auth configure-docker
