@@ -56,8 +56,9 @@ resource "google_project_iam_member" "storage_admin" {
 #   member = "serviceAccount:${google_service_account.github_actions.email}"
 # }
 
-resource "google_service_account_iam_member" "github_actions" {
+
+resource "google_service_account_iam_member" "wif-sa" {
   service_account_id = google_service_account.github_actions.id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/gha-oidc/attribute.repository/sandrolex/test-actions"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/attribute.repository/sandrolex/test-actions"
 }
