@@ -44,18 +44,25 @@ resource "google_service_account" "github_actions_read" {
 #   member  = "serviceAccount:${google_service_account.github_actions_read.email}"
 # }
 
-# resource "google_service_account" "github_actions_write" {
-#   // We increase probability of collisions here, but there's requirement on length as well as starting on a letter, which is not a guarantee for md5
-#   account_id   = "w${substr(local.role_name_md5, 0, 29)}"
-#   display_name = "gha oidc WRITE ${var.github_repository}"
-#   project      = var.project
-# }
+resource "google_service_account" "github_actions_write" {
+  // We increase probability of collisions here, but there's requirement on length as well as starting on a letter, which is not a guarantee for md5
+  account_id   = "w${substr(local.role_name_md5, 0, 29)}"
+  display_name = "gha oidc WRITE ${var.github_repository}"
+  project      = var.project
+}
 
 resource "google_storage_bucket_iam_member" "gcr_read" {
   bucket = var.storage_bucket
   role   = "roles/storage.objectViewer"
   member = "serviceAccount:${google_service_account.github_actions_read.email}"
 }
+
+resource "google_storage_bucket_iam_member" "gcr_write" {
+  bucket = var.storage_bucket
+  role   = "roles/storage.legacyBucketWriter"
+  member = "serviceAccount:${google_service_account.github_actions_write.email}"
+}
+
 
 
 # resource "google_project_iam_member" "storage_write" {
@@ -83,8 +90,8 @@ resource "google_service_account_iam_member" "wif-sa_read" {
   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/attribute.repository/${var.github_repository}"
 }
 
-# resource "google_service_account_iam_member" "wif-sa_write" {
-#   service_account_id = google_service_account.github_actions_write.id
-#   role               = "roles/iam.workloadIdentityUser"
-#   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/attribute.repository/${var.github_repository}"
-# }
+resource "google_service_account_iam_member" "wif-sa_write" {
+  service_account_id = google_service_account.github_actions_write.id
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/attribute.repository/${var.github_repository}"
+}
