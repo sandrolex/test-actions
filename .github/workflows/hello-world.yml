@@ -27,15 +27,17 @@ jobs:
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
       
+      
+      - name: "Read from registry"
+        run: |
+          docker run gcr.io/oidc-experiment-354309/crab:4 cat /etc/passwd
+
       - name: "Push new image"
         run: |
           docker build -t crab . 
           docker tag crab gcr.io/oidc-experiment-354309/crab:4
           docker push gcr.io/oidc-experiment-354309/crab:4
 
-      - name: "Read from registry"
-        run: |
-          docker run gcr.io/oidc-experiment-354309/crab:4 cat /etc/passwd
 
       # - name: "try to write with read perms"
       #   run: |
