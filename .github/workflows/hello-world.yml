@@ -31,11 +31,11 @@ jobs:
         run: |
           docker run gcr.io/oidc-experiment-354309/crab:2 cat /etc/passwd
 
-      - name: "try to write with read perms"
-        run: |
-          docker build -t crab . 
-          docker tag crab gcr.io/oidc-experiment-354309/crab:3
-          docker push gcr.io/oidc-experiment-354309/crab:3
+      # - name: "try to write with read perms"
+      #   run: |
+      #     docker build -t crab . 
+      #     docker tag crab gcr.io/oidc-experiment-354309/crab:3
+      #     docker push gcr.io/oidc-experiment-354309/crab:3
 
       - name: "Auth with Write permissions"
         id: auth2
