@@ -13,11 +13,11 @@ variable "github_repository" {
 #   description = "Name of the ACR Regitry"
 # }
 
-# variable "allow_on_pull_requests" {
-#   type        = bool
-#   default     = false
-#   description = "Whether pull requests should have access to specified claims."
-# }
+variable "allow_on_pull_requests" {
+  type        = bool
+  default     = false
+  description = "Whether pull requests should have access to specified claims."
+}
 
 variable "allow_write" {
   type    = bool
@@ -30,4 +30,8 @@ variable "project" {
 
 variable "storage_bucket" {
   type = string
+}
+
+variable "github_repository_branches" {
+  type = set(string)
 }
