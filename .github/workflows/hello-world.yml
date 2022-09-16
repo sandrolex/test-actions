@@ -29,7 +29,7 @@ jobs:
 
       - name: "Read from registry"
         run: |
-          docker run gcr.io/oidc-experiment-354309/busybox cat /etc/passwd
+          docker run gcr.io/oidc-experiment-354309/crab:2 cat /etc/passwd
 
       - name: "Auth with Write permissions"
         id: auth2
