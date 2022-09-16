@@ -64,10 +64,19 @@ resource "google_service_account_iam_member" "wif-sa_read" {
   member = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/subject/repo:${var.github_repository}:ref:refs/heads/test-gcp"
 }
 
-resource "google_service_account_iam_member" "wif-sa_write" {
+
+resource "google_service_account_iam_member" "wif-sa_read-pr" {
+  service_account_id = google_service_account.github_actions_read.id
+  role               = "roles/iam.workloadIdentityUser"
+  #   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/attribute.repository/${var.github_repository}"
+  member = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/subject/repo:${var.github_repository}:pull_request"
+}
+
+resource "google_service_account_iam_member" "wif-sa_write-pr" {
   service_account_id = google_service_account.github_actions_write.id
   role               = "roles/iam.workloadIdentityUser"
   #   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/attribute.repository/${var.github_repository}"
-  member = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/subject/repo:${var.github_repository}:ref:refs/heads/test-gcp"
+  member = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.pool.name}/subject/repo:${var.github_repository}:pull_request"
 }
+
 
