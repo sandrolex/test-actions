@@ -17,7 +17,7 @@ jobs:
         with:
           token_format: 'access_token'
           workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/new-pool-tf/providers/new-pool-tf
-          service_account: gha-oidc@oidc-experiment-354309.iam.gserviceaccount.com
+          service_account: s5355d56a2ad4999910bc2f81fde9a@oidc-experiment-354309.iam.gserviceaccount.com
         
       - name: "Interact with gcr read"
         uses: docker/login-action@v2
