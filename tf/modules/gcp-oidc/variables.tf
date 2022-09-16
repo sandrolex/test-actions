@@ -27,3 +27,7 @@ variable "allow_write" {
 variable "project" {
   type = string
 }
+
+variable "storage_bucket" {
+  type = string
+}
