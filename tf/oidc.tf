@@ -55,3 +55,9 @@ resource "google_project_iam_member" "storage_admin" {
 #   role   = "roles/storage.legacyBucketWriter"
 #   member = "serviceAccount:${google_service_account.github_actions.email}"
 # }
+
+resource "google_service_account_iam_member" "github_actions" {
+  service_account_id = google_service_account.github_actions.id
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "principalSet://iam.googleapis.com/gha-oidc/attribute.repository/sandrolex/test-actions"
+}
