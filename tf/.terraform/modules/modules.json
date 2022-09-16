@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"gcp-oidc","Source":"./modules/gcp-oidc","Dir":"modules/gcp-oidc"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"gcp-oidc","Source":"./modules/gcp-oidc","Dir":"modules/gcp-oidc"},{"Key":"gcp-oidc-read","Source":"./modules/gcp-oidc","Dir":"modules/gcp-oidc"}]}
