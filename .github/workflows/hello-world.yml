@@ -16,8 +16,8 @@ jobs:
         uses: "google-github-actions/auth@v0"
         with:
           token_format: 'access_token'
-          workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-          service_account: my-service-account@oidc-experiment-354309.iam.gserviceaccount.com
+          workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/new-pool-tf/providers/new-pool-tf
+          service_account: gha-oidc@oidc-experiment-354309.iam.gserviceaccount.com
         
       - name: "Interact with gcr read"
         uses: docker/login-action@v2
