@@ -12,12 +12,17 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-
+ 
       - name: AWS OIDC configure
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::${{ env.aws-account }}:role/gha-test
           aws-region: ${{ env.aws-region }}
+
+      - name: Login to ECR
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.aws-account }}.dkr.ecr.${{ env.aws-region }}.amazonaws.com
 
       - name: Build && Push container
         run: |
