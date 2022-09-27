@@ -1,25 +1,27 @@
-name: Hello World Action
+name: OIDC
 on: [push]
 permissions:
       id-token: write
       contents: read 
 jobs:
-  Explore-GitHub-Actions:
+  OIDC-AWS-READ:
     runs-on: ubuntu-latest
+    env:
+      aws-account: 444838350740
+      aws-region: eu-west-3
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+
+      - name: AWS OIDC configure
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{ env.aws-account }}:role/gha-test
+          aws-region: ${{ env.aws-region }}
+
+      - name: Build && Push container
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      # - uses: ./.github/workflows/composite/test-creds
-      #   with:
-      #     value1: "Space Invaders"
-      #     account: 213174456968
-      #     region: eu-west-1
-
-
-  
+          # docker build . -t wolfi:gha
+          # docker tag wolfi:gha 444838350740.dkr.ecr.eu-west-3.amazonaws.com/wolfi:oidc
+          docker pull 444838350740.dkr.ecr.eu-west-3.amazonaws.com/wolfi:1
+          docker run 444838350740.dkr.ecr.eu-west-3.amazonaws.com/wolfi:1 cat /etc/os-release
