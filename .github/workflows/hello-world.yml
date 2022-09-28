@@ -33,4 +33,4 @@ jobs:
 
       - name: S3 bucket list
         run: |
-          aws s3 ls
+          aws s3 ls coriky-gha-test
