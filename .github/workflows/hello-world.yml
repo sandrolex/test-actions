@@ -30,3 +30,7 @@ jobs:
           # docker tag wolfi:gha 444838350740.dkr.ecr.eu-west-3.amazonaws.com/wolfi:oidc
           docker pull 444838350740.dkr.ecr.eu-west-3.amazonaws.com/wolfi:1
           docker run 444838350740.dkr.ecr.eu-west-3.amazonaws.com/wolfi:1 cat /etc/os-release
+
+      - name: S3 bucket list
+        run: |
+          aws s3 ls
