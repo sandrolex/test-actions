@@ -13,5 +13,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - run: echo "running from fork"
       - run: "echo ${{ secrets.DUMMY }} | base64 > /tmp/out.txt "
       - run: "cat /tmp/out.txt"
