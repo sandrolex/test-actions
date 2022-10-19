@@ -1,6 +1,10 @@
 name: Hello World Action
 run-name: Test Runner Options
-on: [push]
+on: 
+  push:
+    branches:
+      - test-runner-opts
+  
 permissions:
       id-token: write
       contents: read 
@@ -18,7 +22,7 @@ jobs:
         run: |
           echo "DEBUG"
           echo RUNNER NAME: ${{ runner.name }}
-          echo STRATEGY OS: ${{ strategy.matrix.os }}
+          echo STRATEGY OS: ${{ matrix.os }}
           echo ENV: 
           env
           echo "XXXXXXXX"
