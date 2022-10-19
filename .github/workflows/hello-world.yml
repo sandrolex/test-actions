@@ -22,7 +22,4 @@ jobs:
           echo ENV: 
           env
           echo "XXXXXXXX"
-          echo ${{ GITHUB_ENV}}
-
-
-  
+          echo $GITHUB_ENV
