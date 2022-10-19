@@ -1,25 +1,23 @@
 name: Hello World Action
+run-name: Test Runner Options
 on: [push]
 permissions:
       id-token: write
       contents: read 
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  example_matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-20.04]
+        version: [10, 12, 14]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - name: Debug
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      # - uses: ./.github/workflows/composite/test-creds
-      #   with:
-      #     value1: "Space Invaders"
-      #     account: 213174456968
-      #     region: eu-west-1
-
+          echo "DEBUG"
+          echo RUNNER NAME: ${{ runner.name }}
+          echo STRATEGY OS ${{ strategy.matrix.os }}    
 
   
