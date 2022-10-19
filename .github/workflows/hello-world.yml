@@ -18,6 +18,11 @@ jobs:
         run: |
           echo "DEBUG"
           echo RUNNER NAME: ${{ runner.name }}
-          echo STRATEGY OS ${{ strategy.matrix.os }}    
+          echo STRATEGY OS: ${{ strategy.matrix.os }}
+          echo ENV: 
+          env
+          echo "XXXXXXXX"
+          echo ${{ GITHUB_ENV}}
+
 
   
