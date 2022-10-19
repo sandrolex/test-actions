@@ -12,8 +12,7 @@ jobs:
   example_matrix:
     strategy:
       matrix:
-        os: [ubuntu-22.04, ubuntu-20.04]
-        version: [10, 12, 14]
+        os: [ubuntu-22.04, ["ubuntu-20.04", "test"]]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository code
@@ -23,6 +22,7 @@ jobs:
           echo "DEBUG"
           echo RUNNER NAME: ${{ runner.name }}
           echo STRATEGY OS: ${{ matrix.os }}
+          echo STRATEGY OS ARRAY: ${{ matrix.os[0] }}
           echo ENV: 
           env
           echo "XXXXXXXX"
