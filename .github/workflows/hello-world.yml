@@ -49,7 +49,7 @@ jobs:
 
       - name: issue-bot
         # if: failure()
-        uses: imjohnbo/issue-bot@v3
+        uses: imjohnbo/issue-bot@v3.4.0
         env:
           TOKEN: ${{ steps.generate_token.outputs.token }}
         with:
