@@ -27,3 +27,14 @@ jobs:
           env
           echo "XXXXXXXX"
           echo $GITHUB_ENV
+
+      - name: issue-bot
+        if: failure()
+        uses: imjohnbo/issue-bot@v3
+        with:
+          assignees: "sandrolex"    # GitHub handles without the @
+          labels: ci
+          pinned: false
+          close-previous: false
+          title: Test failure
+          body: "...yo {{ assignees }}, some error messages related to the broken test..."
