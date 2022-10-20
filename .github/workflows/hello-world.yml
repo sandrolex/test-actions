@@ -28,23 +28,23 @@ jobs:
           echo "XXXXXXXX"
           echo $GITHUB_ENV
 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0'
-        with:
-          token_format: 'id_token'
-          workload_identity_provider: 'projects/983862741054/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'my-service-account@oidc-experiment-354309.iam.gserviceaccount.com'
-          id_token_audience: 'https://myapp-uvehjacqzq.a.run.app'
-          id_token_include_email: true
+      # - id: 'auth'
+      #   name: 'Authenticate to Google Cloud'
+      #   uses: 'google-github-actions/auth@v0'
+      #   with:
+      #     token_format: 'id_token'
+      #     workload_identity_provider: 'projects/983862741054/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+      #     service_account: 'my-service-account@oidc-experiment-354309.iam.gserviceaccount.com'
+      #     id_token_audience: 'https://myapp-uvehjacqzq.a.run.app'
+      #     id_token_include_email: true
 
       - name: issue-bot
-        if: failure()
+        # if: failure()
         uses: imjohnbo/issue-bot@v3
         with:
-          assignees: "sandrolex"    # GitHub handles without the @
-          labels: ci
-          pinned: false
+          # assignees: "sandrolex"    # GitHub handles without the @
+          # labels: ci
+          # pinned: false
           close-previous: false
-          title: Test failure
-          body: "...yo {{ assignees }}, some error messages related to the broken test..."
+          title: XXXX
+          body: "...BODY..."
