@@ -48,3 +48,4 @@ jobs:
           close-previous: false
           title: XXXX
           body: "...BODY..."
+          token: ${{ secrets.ISSUE }}
