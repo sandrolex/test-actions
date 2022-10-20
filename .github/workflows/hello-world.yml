@@ -45,7 +45,7 @@ jobs:
         uses: tibdex/github-app-token@v1
         with:
           app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
+          private_key: ${{ secrets.CLIENT_ID }}
 
       - name: issue-bot
         # if: failure()
