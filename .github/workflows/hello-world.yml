@@ -6,35 +6,27 @@ on:
       - test-runner-opts
   
 permissions:
-      id-token: write
-      contents: write
-      issues: write
+  id-token: write
+  contents: write
+  issues: write
+
 jobs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: Debug
-        run: |
-          echo "DEBUG"
+  runs-on: ubuntu-latest
+  steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
+    - name: Debug
+      run: |
+        echo "DEBUG"
 
-      # - name: Generate token
-      #   id: generate_token
-      #   uses: tibdex/github-app-token@v1
-      #   with:
-      #     app_id: ${{ secrets.APP_ID }}
-      #     private_key: ${{ secrets.CLIENT_ID }}
-
-      - name: issue-bot
-        # if: failure()
-        uses: imjohnbo/issue-bot@v3.4.0
-        env:
-          TOKEN: ${{ steps.generate_token.outputs.token }}
-        with:
-          # assignees: "sandrolex"    # GitHub handles without the @
-          # labels: ci
-          # pinned: false
-          close-previous: false
-          title: XXXX
-          body: "...BODY..."
-          # token: ${{ env.TOKEN }}
+    - name: issue-bot
+      # if: failure()
+      uses: imjohnbo/issue-bot@v3.4.0
+      with:
+        # assignees: "sandrolex"    # GitHub handles without the @
+        # labels: ci
+        # pinned: false
+        close-previous: false
+        title: XXXX
+        body: "...BODY..."
+        # token: ${{ env.TOKEN }}
