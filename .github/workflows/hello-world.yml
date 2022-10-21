@@ -18,12 +18,12 @@ jobs:
         run: |
           echo "DEBUG"
 
-      - name: Generate token
-        id: generate_token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.CLIENT_ID }}
+      # - name: Generate token
+      #   id: generate_token
+      #   uses: tibdex/github-app-token@v1
+      #   with:
+      #     app_id: ${{ secrets.APP_ID }}
+      #     private_key: ${{ secrets.CLIENT_ID }}
 
       - name: issue-bot
         # if: failure()
