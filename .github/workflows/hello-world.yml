@@ -8,37 +8,15 @@ on:
 permissions:
       id-token: write
       contents: write
-
+      issues: write
 jobs:
-  example_matrix:
-    strategy:
-      matrix:
-        os: [ubuntu-22.04, ["ubuntu-20.04"]]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Debug
         run: |
           echo "DEBUG"
-          echo RUNNER NAME: ${{ runner.name }}
-          echo STRATEGY OS: ${{ matrix.os }}
-          echo STRATEGY OS ARRAY: ${{ matrix.os[0] }}
-          echo ENV: 
-          env
-          echo "XXXXXXXX"
-          echo $GITHUB_ENV
-
-      # - id: 'auth'
-      #   name: 'Authenticate to Google Cloud'
-      #   uses: 'google-github-actions/auth@v0'
-      #   with:
-      #     token_format: 'id_token'
-      #     workload_identity_provider: 'projects/983862741054/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-      #     service_account: 'my-service-account@oidc-experiment-354309.iam.gserviceaccount.com'
-      #     id_token_audience: 'https://myapp-uvehjacqzq.a.run.app'
-      #     id_token_include_email: true
-
 
       - name: Generate token
         id: generate_token
@@ -59,4 +37,4 @@ jobs:
           close-previous: false
           title: XXXX
           body: "...BODY..."
-          token: ${{ env.TOKEN }}
+          # token: ${{ env.TOKEN }}
