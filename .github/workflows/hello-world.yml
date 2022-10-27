@@ -1,25 +1,68 @@
-name: Hello World Action
-on: [push]
+name: GCP
+on: [push, pull_request]
 permissions:
       id-token: write
       contents: read 
 jobs:
-  Explore-GitHub-Actions:
+  GCP-issue:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - run: echo "Hello GCP"
+
+      - name: "Authenticate to Google Cloud"
+        id: auth
+        uses: "google-github-actions/auth@v0"
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/gha-pool2/providers/gha-provider
+          service_account: r5355d56a2ad4999910bc2f81fde9a@oidc-experiment-354309.iam.gserviceaccount.com
+          # service_account: w5355d56a2ad4999910bc2f81fde9a@oidc-experiment-354309.iam.gserviceaccount.com
+        
+      - name: "Interact with gcr read"
+        uses: docker/login-action@v2
+        with:
+          registry: gcr.io
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+      
+      
+      - name: "Read from registry"
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      # - uses: ./.github/workflows/composite/test-creds
+          docker run gcr.io/oidc-experiment-354309/crab:4 cat /etc/passwd
+
+      - name: "Push new image"
+        run: |
+          docker build -t crab . 
+          docker tag crab gcr.io/oidc-experiment-354309/crab:4
+          docker push gcr.io/oidc-experiment-354309/crab:4
+
+
+      # - name: "try to write with read perms"
+      #   run: |
+      #     docker build -t crab . 
+      #     docker tag crab gcr.io/oidc-experiment-354309/crab:3
+      #     docker push gcr.io/oidc-experiment-354309/crab:3
+
+      # - name: "Auth with Write permissions"
+      #   id: auth2
+      #   uses: "google-github-actions/auth@v0"
       #   with:
-      #     value1: "Space Invaders"
-      #     account: 213174456968
-      #     region: eu-west-1
+      #     token_format: 'access_token'
+      #     workload_identity_provider: projects/983862741054/locations/global/workloadIdentityPools/gha-pool/providers/gha-provider
+      #     service_account: w5355d56a2ad4999910bc2f81fde9a@oidc-experiment-354309.iam.gserviceaccount.com
+      
+      # - name: "Interact with gcr write"
+      #   uses: docker/login-action@v2
+      #   with:
+      #     registry: gcr.io
+      #     username: oauth2accesstoken
+      #     password: ${{ steps.auth2.outputs.access_token }}
+        
+      
 
-
-  
+        
+      # - name: "docker login"
+      #   run: | 
+      #     gcloud auth configure-docker
